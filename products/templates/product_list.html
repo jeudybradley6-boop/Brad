@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Liste des Produits{% endblock %}
+
+{% block content %}
+<h2>Liste des Produits</h2>
+<div class="row">
+    {% for produit in produits %}
+    <div class="col-md-4 mb-3">
+        <div class="card">
+            {% if produit.image %}
+            <img src="{{ produit.image.url }}" class="card-img-top" alt="{{ produit.name }}">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ produit.name }}</h5>
+                <p class="card-text">{{ produit.description|truncatechars:100 }}</p>
+                <p class="card-text"><strong>Prix: </strong>{{ produit.price }} $</p>
+
+                <!-- Boutons -->
+                <a href="{% url 'edit_product' produit.id %}" class="btn btn-warning btn-sm">Modifier</a>
+                <a href="{% url 'delete_product' produit.id %}" class="btn btn-danger btn-sm">Supprimer</a>
+
+                <!-- Bouton Panier -->
+                <a href="{% url 'add_to_cart' produit.id %}" class="btn btn-success btn-sm">
+                    🛒 Ajouter au panier
+                </a>
+
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <p>Aucun produit disponible.</p>
+    {% endfor %}
+</div>
+{% endblock %}

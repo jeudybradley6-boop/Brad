@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}Accueil - Foreign Store{% endblock %}
+
+{% block content %}
+<div class="text-center mt-5">
+    <h1>Bienvenue dans Foreign Store !</h1>
+    <p>Découvrez nos produits exceptionnels.</p>
+    <a href="{% url 'product_list' %}" class="btn btn-primary">Voir les produits</a>
+</div>
+{% endblock %}

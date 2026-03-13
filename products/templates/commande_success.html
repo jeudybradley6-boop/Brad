@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Merci pour votre commande !</h2>
+<p>Votre commande a été enregistrée avec succès.</p>
+<a href="{% url 'product_list' %}" class="btn btn-primary">Retour aux produits</a>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}Mes Commandes{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <h2 class="mb-4">Mes Commandes</h2>
+
+    {% if commandes %}
+
+    <table class="table table-striped table-bordered shadow">
+
+        <thead class="table-dark">
+            <tr>
+                <th>ID Commande</th>
+                <th>Date</th>
+                <th>Produits</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+        {% for commande in commandes %}
+
+        <tr>
+            <td>#{{ commande.id }}</td>
+
+            <td>
+                {{ commande.date_commande|date:"d/m/Y H:i" }}
+            </td>
+
+            <td>
+                {{ commande.produit }}
+            </td>
+
+            <td>
+                ${{ commande.prix_total }}
+            </td>
+        </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+    {% else %}
+
+    <div class="alert alert-info">
+        Ou poko fè okenn commande.
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

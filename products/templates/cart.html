@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %}Panier - Foreign Store{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Panier</h2>
+
+    {% if items %}
+    <table class="table table-bordered table-hover">
+        <thead class="table-primary">
+            <tr>
+                <th>Produit</th>
+                <th>Quantité</th>
+                <th>Prix unitaire</th>
+                <th>Total</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td>{{ item.produit.name }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.produit.price|floatformat:2 }} $</td>
+                <td>{{ item.total_price|floatformat:2 }} $</td>
+                <td>
+                    <form action="{% url 'remove_from_cart' item.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm">Retirer</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <th colspan="3" class="text-end">Total général:</th>
+                <th colspan="2">{{ total|floatformat:2 }} $</th>
+            </tr>
+        </tfoot>
+    </table>
+    <a href="{% url 'checkout' %}" class="btn btn-success">Passer à la caisse</a>
+    {% else %}
+    <p>Votre panier est vide.</p>
+    <a href="{% url 'product_list' %}" class="btn btn-primary">Retour aux produits</a>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}Confirmation de commande{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-success">Merci pour votre commande !</h2>
+    <p>Votre commande a été reçue et est en cours de traitement.</p>
+    <a href="{% url 'home' %}" class="btn btn-primary mt-3">Retour à l'accueil</a>
+</div>
+{% endblock %}
